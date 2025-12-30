@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Khunte - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2a5298;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: block;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .project-card p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .github-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .github-badge:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .github-link:hover {
+            background: #0366d6;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .contact {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .contact a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: #764ba2;
+        }
+
+        .last-updated {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .live-badge {
+                position: static;
+                margin: 0 auto 30px;
+                width: fit-content;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="live-badge">
+            <div class="live-dot"></div>
+            LIVE & UPDATED
+        </div>
+
+        <h1>👨‍💻 Rahul Khunte</h1>
+        <p class="subtitle">AI Systems Engineer | Web3 & GPU Infrastructure</p>
+        <p class="tagline">Building production-ready systems, not demos.</p>
+
+        <div class="projects">
+            <a href="Crypto_Whale_Tracker_Portfolio.html" class="project-card">
+                <div class="emoji">🐋</div>
+                <h2>Crypto Whale Tracker</h2>
+                <p>Real-time Ethereum blockchain monitoring system with live whale detection and transaction analytics</p>
+                <span class="github-badge" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://github.com/rahulkhunte/crypto-whale-tracker', '_blank');">⭐ View on GitHub</span>
+            </a>
+
+            <a href="AI_Image_Bot_Portfolio.html" class="project-card">
+                <div class="emoji">🤖</div>
+                <h2>AI Image Bot</h2>
+                <p>GPU-powered Telegram bot with Stable Diffusion, payment integration, and real-time processing</p>
+                <span class="github-badge" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://github.com/rahulkhunte/ai-image-bot', '_blank');">⭐ View on GitHub</span>
+            </a>
+        </div>
+
+        <a href="https://github.com/rahulkhunte" target="_blank" class="github-link">
+            💻 View All Projects on GitHub
+        </a>
+
+        <div class="contact">
+            <p><strong>Get in Touch:</strong></p>
+            <a href="mailto:rahulk.rk903@gmail.com">📧 Email</a> •
+            <a href="https://github.com/rahulkhunte" target="_blank">💻 GitHub</a> •
+            <a href="https://linkedin.com/in/rahulkhunte" target="_blank">💼 LinkedIn</a>
+        </div>
+
+        <div class="last-updated">
+            <p>🔄 Actively maintained · More projects coming soon</p>
+        </div>
+    </div>
+</body>
+</html>

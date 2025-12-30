@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-ready AI Image Generation Telegram Bot with SDXL Turbo on L40 GPU. Features payment integration, credit system, and 4-second generation time.">
+    <meta name="author" content="Rahul Khunte">
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="AI Image Generation Telegram Bot - Rahul Khunte">
+    <meta property="og:description" content="Full-stack AI-as-a-Service bot with GPU inference, payment integration, and production deployment">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/rahulkhunte/ai-image-bot">
+
+    <!-- Prism.js Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <title>AI Image Generation Telegram Bot - Rahul Khunte</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .tagline { font-size: 1.2em; opacity: 0.9; margin-bottom: 20px; }
+        .status-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-top: 10px; margin-right: 8px; }
+        .highlight-badge { display: inline-block; background: rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-top: 10px; border: 2px solid rgba(255,255,255,0.5); font-weight: bold; }
+        .content { padding: 40px; }
+        .section { margin-bottom: 40px; }
+        .section h2 { color: #667eea; font-size: 1.8em; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        .section h3 { color: #764ba2; font-size: 1.3em; margin: 20px 0 10px 0; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .tech-item { background: #f8f9fa; padding: 15px; border-radius: 10px; border-left: 4px solid #667eea; }
+        .tech-item strong { color: #764ba2; display: block; margin-bottom: 5px; }
+        .features-list { list-style: none; margin-top: 15px; }
+        .features-list li { background: #f8f9fa; padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #764ba2; font-size: 1.05em; }
+
+        /* Pricing Cards */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0; }
+        .pricing-card { background: white; border: 2px solid #e0e0e0; border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s; position: relative; }
+        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); border-color: #667eea; }
+        .pricing-card.best { border: 3px solid #ffc107; background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%); }
+        .pricing-card.best::before { content: "⭐ BEST VALUE"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ffc107; color: #333; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8em; }
+        .pricing-card h3 { color: #667eea; font-size: 1.8em; margin-bottom: 15px; }
+        .pricing-card .price { font-size: 2.5em; font-weight: bold; color: #333; margin: 15px 0; }
+        .pricing-card .credits { color: #666; font-size: 1.1em; margin: 10px 0; }
+        .pricing-card .images { color: #999; font-size: 0.95em; }
+
+        .challenge-card { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin-bottom: 20px; border-radius: 10px; }
+        .challenge-card h4 { color: #856404; margin-bottom: 10px; }
+        .solution { background: #d4edda; border-left: 5px solid #28a745; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .learning { background: #d1ecf1; border-left: 5px solid #17a2b8; padding: 15px; margin-top: 10px; border-radius: 8px; font-style: italic; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .stat-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; }
+        .stat-box .number { font-size: 2.5em; font-weight: bold; display: block; margin-bottom: 10px; }
+        .stat-box .label { font-size: 1em; opacity: 0.9; }
+        .scale-note { background: #e7f3ff; border-left: 5px solid #2196F3; padding: 15px; margin-top: 20px; border-radius: 8px; font-size: 1.05em; }
+        .github-link { display: inline-block; background: #24292e; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: transform 0.2s; }
+        .github-link:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        /* Prism.js code styling */
+        pre[class*="language-"] { background: #2d2d2d; border-radius: 10px; margin: 20px 0; }
+
+        .image-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .image-card { border: 2px solid #667eea; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background: white; transition: transform 0.3s; }
+        .image-card:hover { transform: translateY(-5px); box-shadow: 0 8px 12px rgba(0,0,0,0.2); }
+        .image-card img { width: 100%; height: auto; max-height: 500px; object-fit: contain; display: block; background: #f0f0f0; }
+        .image-caption { padding: 15px; background: #f8f9fa; }
+        .image-caption strong { color: #764ba2; display: block; margin-bottom: 5px; font-size: 1.1em; }
+        .image-caption small { color: #666; line-height: 1.5; }
+        .cta-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; text-align: center; margin: 40px 0; }
+        .cta-section h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .cta-section p { font-size: 1.1em; opacity: 0.9; margin-bottom: 25px; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .cta-button { background: white; color: #667eea; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.2s; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .footer { background: #f8f9fa; padding: 30px; text-align: center; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 AI Image Generation Telegram Bot</h1>
+            <p class="tagline">Production-ready AI-as-a-Service with monetization</p>
+            <div>
+                <span class="status-badge">⚡ Deployed (Demo paused)</span>
+                <span class="status-badge">Built: December 2024 · Updated 2025</span>
+                <br>
+                <span class="highlight-badge">⚙️ Scalable Design | Cost-aware GPU usage</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>📋 Project Overview</h2>
+                <p style="font-size: 1.1em; line-height: 1.8;">Full-stack Telegram bot providing AI image generation as a paid service. Built with SDXL Turbo on L40 GPU, featuring credit-based pricing, payment integration, and multi-tier quality options.</p>
+                <a href="https://github.com/rahulkhunte/ai-image-bot" class="github-link" target="_blank">🔗 View on GitHub</a>
+            </div>
+
+            <div class="section">
+                <h2>💰 Pricing Tiers</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price">$1.20</div>
+                        <div class="credits">100 Credits</div>
+                        <div class="images">~100 images</div>
+                    </div>
+                    <div class="pricing-card best">
+                        <h3>Pro</h3>
+                        <div class="price">$4.80</div>
+                        <div class="credits">500 Credits</div>
+                        <div class="images">~500 images</div>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Power</h3>
+                        <div class="price">$8.40</div>
+                        <div class="credits">1000 Credits</div>
+                        <div class="images">~1000 images</div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 20px;">
+                    💳 <strong>Payment via Telegram Stars</strong> | Instant credit top-up | Referral bonuses available
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>🛠️ Technology Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-item"><strong>Backend</strong>Python, python-telegram-bot</div>
+                    <div class="tech-item"><strong>AI Model</strong>SDXL Turbo (Stable Diffusion XL)</div>
+                    <div class="tech-item"><strong>GPU</strong>NVIDIA L40 (48GB VRAM)</div>
+                    <div class="tech-item"><strong>Deployment</strong>Railway (Bot) + VPS (GPU Inference)</div>
+                    <div class="tech-item"><strong>Networking</strong>Ngrok Tunnel</div>
+                    <div class="tech-item"><strong>Payment</strong>Telegram Stars API</div>
+                    <div class="tech-item"><strong>State Management</strong>In-memory cache (prototype) → Planned: PostgreSQL</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⚡ Key Features</h2>
+                <ul class="features-list">
+                    <li>⚡ 4-second generation time (SDXL Turbo)</li>
+                    <li>💎 Credit-based monetization ($0.01-0.12 per image)</li>
+                    <li>📊 3 quality tiers: Standard (512x512), HD (1024x1024), 4K (2048x2048)</li>
+                    <li>💰 Telegram Stars payment integration</li>
+                    <li>🎁 Referral system (+20 credits per referral)</li>
+                    <li>🎨 7 pre-built style presets (anime, cyberpunk, pixel, fantasy, etc.)</li>
+                    <li>👤 Admin credit management system</li>
+                    <li>🔒 Rate limiting per user + prompt validation</li>
+                    <li>📈 Break-even: ~50 images/day covers GPU rental cost</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>🎨 Bot Interface & Sample Outputs</h2>
+
+                <h3>📱 User Interface</h3>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://raw.githubusercontent.com/rahulkhunte/ai-image-bot/main/bot_main_menu.jpg" alt="Bot Main Interface" loading="lazy" />
+                        <div class="image-caption">
+                            <strong>Main Menu</strong>
+                            <small>L40 GPU status indicator, credit balance display, quality tier selection (Standard/HD/4K)</small>
+                        </div>
+                    </div>
+
+                    <div class="image-card">
+                        <img src="https://raw.githubusercontent.com/rahulkhunte/ai-image-bot/main/bot_payment.jpg" alt="Payment System" loading="lazy" />
+                        <div class="image-caption">
+                            <strong>Payment Packages</strong>
+                            <small>Telegram Stars integration with instant credit delivery</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>🖼️ Generated Images</h3>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://raw.githubusercontent.com/rahulkhunte/ai-image-bot/main/robot_output.jpg" alt="Generated Robot Warrior" loading="lazy" />
+                        <div class="image-caption">
+                            <strong>Sample Output</strong>
+                            <small><strong>Prompt:</strong> "a futuristic robot warrior" | ⚡ 4 seconds | 📱 Standard Quality (512x512)</small>
+                        </div>
+                    </div>
+
+                    <div class="image-card">
+                        <img src="https://raw.githubusercontent.com/rahulkhunte/ai-image-bot/main/image_gallery.jpg" alt="Generated Images Gallery" loading="lazy" />
+                        <div class="image-caption">
+                            <strong>30+ Diverse Outputs</strong>
+                            <small>Robots, mechs, landscapes, anime characters, cyberpunk scenes, nature, architecture, abstract art</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learning" style="margin-top: 20px;">
+                    <strong>📸 Visual Proof:</strong> Screenshots show actual production bot with working payment system, credit management, and real-time L40 GPU status. All images generated in 4 seconds using SDXL Turbo model.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🚧 Challenges & Solutions</h2>
+                <div class="challenge-card">
+                    <h4>Challenge 1: Docker conflicts on VPS</h4>
+                    <div class="solution"><strong>✅ Solution:</strong> Deployed Python directly without containerization</div>
+                    <div class="learning"><strong>💡 Learning:</strong> Sometimes simple solutions work better than complex ones</div>
+                </div>
+                <div class="challenge-card">
+                    <h4>Challenge 2: Secure API communication between Railway and VPS</h4>
+                    <div class="solution"><strong>✅ Solution:</strong> Ngrok tunnel with environment variable URL management</div>
+                    <div class="learning"><strong>💡 Learning:</strong> Environment variables protect sensitive endpoints</div>
+                </div>
+                <div class="challenge-card">
+                    <h4>Challenge 3: 35 deployment iterations to production</h4>
+                    <div class="solution"><strong>✅ Solution:</strong> Systematic debugging of timeouts, payload limits, connection drops</div>
+                    <div class="learning"><strong>💡 Learning:</strong> Persistence and methodical error tracking leads to success</div>
+                </div>
+                <div class="challenge-card">
+                    <h4>Challenge 4: Payment system integration</h4>
+                    <div class="solution"><strong>✅ Solution:</strong> Telegram Stars API with invoice generation and webhook handling</div>
+                    <div class="learning"><strong>💡 Learning:</strong> Platform-native payment systems reduce friction</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📊 Results & Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span class="number">35</span><span class="label">Deployment Iterations</span></div>
+                    <div class="stat-box"><span class="number">4 seconds</span><span class="label">Generation Time</span></div>
+                    <div class="stat-box"><span class="number">10+ (family + friends)</span><span class="label">Users Tested</span></div>
+                    <div class="stat-box"><span class="number">30+ diverse outputs</span><span class="label">Images Generated</span></div>
+                </div>
+
+                <div class="scale-note">
+                    <strong>⚡ Scale Capability:</strong> Designed to scale to 100+ concurrent users with queueing, rate limits, and load balancing.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💻 Code Highlights</h2>
+
+                <pre><code class="language-python"># Key Functions from bot.py (~250 lines)
+
+async def generate_handler(update, context):
+    """Main image generation with quality tiers"""
+    quality = context.user_data.get('quality', 'standard')
+    required_credits = QUALITY_TIERS[quality]['credits']
+
+    # Credit check
+    if user_credits.get(user_id, 0) < required_credits:
+        return await show_buy_options()
+
+    # Generate with SDXL Turbo (4 seconds)
+    response = requests.post(
+        f"{GPU_API}/generate",
+        json={"prompt": prompt, "size": QUALITY_TIERS[quality]['size']}
+    )
+
+    # Deduct credits and send image
+    user_credits[user_id] -= required_credits
+    await update.message.reply_photo(photo=response.content)
+
+async def successful_payment_callback(update, context):
+    """Handle Telegram Stars payments"""
+    payload = update.message.successful_payment.invoice_payload
+    credits = int(payload.split('_')[1])
+    user_credits[user_id] += credits
+
+    await update.message.reply_text(
+        f"✅ Payment Successful!\n💎 +{credits} credits added!"
+    )
+</code></pre>
+
+                <h3>🔑 Key Functions</h3>
+                <ul class="features-list">
+                    <li><code>start() - User onboarding with referral tracking</code></li>
+                    <li><code>generate_handler() - Main image generation with quality selection</code></li>
+                    <li><code>successful_payment_callback() - Credit purchase processing</code></li>
+                    <li><code>button_handler() - Interactive menu system</code></li>
+                </ul>
+            </div>
+
+            <div class="cta-section">
+                <h3>🚀 What I'm Building Next</h3>
+                <p>Exploring GPU SaaS infrastructure, AI automation systems, and scalable inference platforms.<br>Open to collaborations, technical roles, and startup opportunities.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/rahulkhunte/ai-image-bot" class="cta-button" target="_blank">📂 View Code</a>
+                    <a href="https://github.com/rahulkhunte" class="cta-button" target="_blank">💼 GitHub Profile</a>
+                    <a href="mailto:rahulk.rk903@gmail.com" class="cta-button">📧 Get in Touch</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>Rahul Khunte</h3>
+            <p>AI Systems Engineer | GPU Inference & Automation</p>
+            <p>📧 rahulk.rk903@gmail.com | 📍 Chhattisgarh, India</p>
+            <p style="margin-top: 20px;">
+                <a href="https://github.com/rahulkhunte/ai-image-bot" target="_blank" style="color: #667eea; text-decoration: none;">Project GitHub</a> · 
+                <a href="https://github.com/rahulkhunte" target="_blank" style="color: #667eea; text-decoration: none;">Profile</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Prism.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+</body>
+</html>
