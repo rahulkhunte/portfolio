@@ -49,9 +49,7 @@ GPU-powered Telegram bot with Stable Diffusion and payment integration
 
 ## 📫 Contact
 
-- **Email:** [rahulk.rk903@gmail.com](mailto:rahulk.rk903@gmail.com)
-- **GitHub:** [@rahulkhunte](https://github.com/rahulkhunte)
-- **LinkedIn:** [rahulkhunte](https://linkedin.com/in/rahulkhunte)
+- **Upwork:** [Hire me on Upwork](https://www.upwork.com/freelancers/~01f1b30553a555730f)
 
 ---
 
